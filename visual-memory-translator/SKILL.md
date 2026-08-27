@@ -11,14 +11,14 @@ description: >-
   white-border stickers and rounded bold-monoline blocks. Use when the user
   invokes 影像转译, Visual Memory Translator, 视觉记忆转译, 文本转译, editorial photo
   reinterpretation, a concept/quote visual card, a holiday-limited editorial
-  overlay, 纸币样张, 纸币实景, or asks to turn a photo into a memory page. Around Qixi, Christmas,
+  overlay, 纸币样张, 纸币实景, 中央邮票, 黑胶唱片实景, or asks to turn a photo into a memory page. Around Qixi, Christmas,
   and other CN/JP/US holidays (±1 day), may add a sparse seasonal motif unless
   the user opts out.
 ---
 
 # Visual Memory Translator / 影像转译编辑器
 
-> Version: 1.4.2
+> Version: 1.5.0
 > Core principle: **原图是现实记录，新图是记忆转译。无图时，句子是概念，画面是隐喻。**
 
 将用户照片转译为具有当代编辑设计、艺术出版、视觉手札气质的二次创作图。
@@ -31,10 +31,10 @@ description: >-
 
 ## When to use
 
-- 用户说：启用影像转译 / 纸币样张 / 纸币实景 / `@VisualMemoryTranslator` / `/visual-memory-translator`
+- 用户说：启用影像转译 / 纸币样张 / 纸币实景 / 中央邮票 / 黑胶唱片实景 / `@VisualMemoryTranslator` / `/visual-memory-translator`
 - 用户上传照片并要求做成艺术出版页、记忆页、展览票、邮票记忆等编辑设计感图像
 - 用户只给一句文案、金句、概念，要求做成编辑感视觉卡 / 文本转译
-- 用户指定 **纸币样张** 或 **纸币实景**：跳过预览，直达对应纪念钞构图
+- 用户指定自选模板（纸币样张、纸币实景、中央邮票、黑胶唱片实景等）：跳过预览，直达对应构图
 - 需要输出：**视觉 prompt + 图像生成/编辑指令**
 
 ### Input routing
@@ -97,7 +97,7 @@ Copy and track:
 4. 预览图内只标 `01`–`09`，不把风格名与长说明塞进图里；在回复中逐号列出风格名和一句适配理由。
 5. 用户回复编号后，**必须基于原始照片重新生成高清成品**；不得裁切、放大或二次编辑宫格中的低清单格。
 6. 支持「再换一组」和「融合 02 和 05」；融合时先说明主风格与被吸收的特征，然后从原图生成。
-7. 用户明确说「跳过预览 / 直接出最终图」或已指定风格（含 **纸币样张** / **纸币实景**）时，直达成品。只说「纸币」而未点名时，按当次需求选样张或实景。纸币票面文字必须先读原图再写，规范见 [banknote.md](references/banknote.md)。
+7. 用户明确说「跳过预览 / 直接出最终图」或已指定自选模板时，直达成品。只说「纸币」而未点名时，按当次需求选样张或实景。纸币规范见 [banknote.md](references/banknote.md)；中央邮票见 [central-stamp.md](references/central-stamp.md)；黑胶唱片见 [vinyl-record.md](references/vinyl-record.md)。
 8. 用户说「先别生成」时，不生成图；最多用文字给 3 个方向。
 9. **text 路径默认 `preview_mode: skip`**。只有用户说「先给我几个方向」时，才出最多 4 个差异明显的隐喻方案（可文字，或 2×2 宫格）。
 10. **节日限定**：用对话当天日期，窗口 ±1 天。默认 `holiday_mode: auto`（窗口内启用）；用户说「不用节日限定」则 skip。不得为过节而给单人照补出伴侣。
@@ -113,6 +113,19 @@ Copy and track:
 3. 用户指定的 Style / Layout / Display  
 4. 原图客观结构  
 5. Skill 默认规则  
+
+### Named template routing
+
+| 用户说法 | `style_mode` | 核心关系 |
+|---|---|---|
+| 纸币样张 / 纪念钞样张 | `banknote_specimen` | 上方摄影，下方平放纪念券 |
+| 纸币实景 / 手持纪念钞 | `banknote_in_situ` | 上方摄影，下方同场景手持纪念券 |
+| 中央邮票 / 原位邮票 | `central_in_place_stamp` | 同一底图中央区域只改变媒介，不改变内容坐标 |
+| 黑胶唱片 / 唱片店实景 | `vinyl_record_in_situ` | 上方正方形摄影，下方唱片店中的专辑实景 |
+| 抽象色块 / 上下色块转译 | `memory_color_blocks` | 上方摄影，下方高概括色块 |
+| 展览票 | `exhibition_ticket` | 摄影事实被编辑成收藏级票据 |
+
+点名模板不是“风格预览候选”，而是明确创作指令。模板不得机械复用上一次生成的标题、编号、场景、媒介或构图。
 
 ### Image analysis (internal)
 
@@ -185,19 +198,21 @@ ratio: 3:4
 | Input | `photo`, `text`, `mixed` | [text-visual.md](references/text-visual.md) |
 | Display | `split_top_bottom`, `taped_corner_photo`, `translation_only`, … | [display-and-layout.md](references/display-and-layout.md) |
 | Layout | `split_editorial`, `large_whitespace_small_art`, … | 同上 |
-| Style | `banknote_specimen`, `banknote_in_situ`, `minimal_watercolor`, … | [styles.md](references/styles.md) / [banknote.md](references/banknote.md) |
+| Style | `banknote_specimen`, `central_in_place_stamp`, `vinyl_record_in_situ`, … | [styles.md](references/styles.md) |
 | Preview | `auto` / `skip`; 4 / **6** / 9 格 | [style-preview.md](references/style-preview.md) |
 | Holiday | `auto` / `force` / `skip`；±1 天 | [holidays.md](references/holidays.md) |
 | Abstraction | `low` / `medium` / **`high`** / `extreme` | [systems.md](references/systems.md) |
 | Text | `none`, `user_text`, `auto_poetic`, … | 同上 |
 | Full schema | YAML | [parameters.md](references/parameters.md) |
 
-智能预设：`travel_journal`, `personal_memory`, `one_day_exhibition`, `postcard_memory`, `through_glass`, `pure_memory`, `layered_sticker_memory`, `rounded_monoline_memory`, `editorial_text_card`, `banknote_specimen`, `banknote_in_situ` → [defaults-and-presets.md](references/defaults-and-presets.md)。
+智能预设：`travel_journal`, `personal_memory`, `one_day_exhibition`, `postcard_memory`, `through_glass`, `pure_memory`, `layered_sticker_memory`, `rounded_monoline_memory`, `editorial_text_card`, `banknote_specimen`, `banknote_in_situ`, `central_in_place_stamp`, `vinyl_record_in_situ` → [defaults-and-presets.md](references/defaults-and-presets.md)。
 
 调用示例 → [examples.md](examples.md)。  
 文本转译 → [text-visual.md](references/text-visual.md)。  
 节日限定 → [holidays.md](references/holidays.md)。  
 纪念纸币 → [banknote.md](references/banknote.md)。  
+中央原位邮票 → [central-stamp.md](references/central-stamp.md)。
+黑胶唱片实景 → [vinyl-record.md](references/vinyl-record.md)。
 质量清单与失败修正 → [quality.md](references/quality.md)。
 
 ---

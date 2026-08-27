@@ -222,3 +222,33 @@ ratio: 3:4
 上半原图铺满；下半手持该券、背景为同一现场。用户说「纸币实景」「手持纪念钞」「实景取样」时用。
 
 只说「纸币模式」时按当次需求选择，不按人物/风景写死。详见 [banknote.md](banknote.md)。
+
+### `central_in_place_stamp`
+
+```yaml
+style_mode: central_in_place_stamp
+original_display_mode: in_place_stamp_window
+layout_mode: single_artwork
+preview_mode: skip
+holiday_mode: skip
+abstraction_level: high
+stamp_scale: medium
+inner_style: auto_content_driven
+ratio: 3:4
+```
+
+用户说「中央邮票」「原位邮票」「框内只换画风」时使用。空间连续性优先于装饰，详见 [central-stamp.md](central-stamp.md)。
+
+### `vinyl_record_in_situ`
+
+```yaml
+style_mode: vinyl_record_in_situ
+original_display_mode: split_top_bottom
+layout_mode: equal_square_stack
+preview_mode: skip
+holiday_mode: skip
+text_mode: auto_minimal
+ratio: 1:2
+```
+
+用户说「黑胶唱片」「唱片店实景」「把照片变成专辑封面」时使用。下方唱片店必须按当前图重新设计，详见 [vinyl-record.md](vinyl-record.md)。

@@ -250,6 +250,42 @@ style_mode: banknote_in_situ
 
 ---
 
+## Example M — 中央原位邮票
+
+```text
+用中央邮票模式。先完成最终裁切，再把中央同一坐标的区域转成内容驱动的艺术媒介；框内不缩放、不重构，也不能复制对象。
+```
+
+```yaml
+style_mode: central_in_place_stamp
+original_display_mode: in_place_stamp_window
+layout_mode: single_artwork
+inner_style: auto_content_driven
+stamp_scale: medium
+ratio: 3:4
+```
+
+框内允许高度概括，但跨边界对象必须保持位置和方向连续。
+
+---
+
+## Example N — 黑胶唱片实景
+
+```text
+把这张照片转成黑胶唱片实景：上方最佳正方形裁切，下方重新设计一间 70 年代唱片店，专辑封面来自这张图但不能直接贴照片。
+```
+
+```yaml
+style_mode: vinyl_record_in_situ
+layout_mode: equal_square_stack
+album_title: auto_from_image
+ratio: 1:2
+```
+
+每张图都重新设计唱片店机位与封面语言，不沿用上一张结果。
+
+---
+
 ## Clarification example
 
 信息不足且方向分歧大时：

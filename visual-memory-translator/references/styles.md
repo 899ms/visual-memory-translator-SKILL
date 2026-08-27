@@ -40,6 +40,10 @@
 
 **把一次经历变成可以寄出的记忆。** 齿孔、小型主体、极简邮戳、日期/地点/编号。未知信息不得虚构；可用抽象编号。
 
+## `central_in_place_stamp` — 中央原位邮票
+
+最终摄影底图中央的一块区域在原坐标发生媒介变化。框内不二次裁切、不缩放、不位移、不复制对象；跨界结构保持连续。媒介按内容自选，并主动删去 60%–80% 次要细节。详见 [central-stamp.md](central-stamp.md)。
+
 ## `exhibition_ticket` — 旅行展览票
 
 **把一次经历当成一场只发生一次的展览。** 展览标题、票据结构、小图、编号、展签短句。未知地点/日期不得虚构；可用 `UNTITLED JOURNEY` / `FIELD NOTE` / `MEMORY STUDY` / `ONE-DAY EXHIBITION` 等。
@@ -100,6 +104,10 @@
 ## `commemorative_banknote` — 纪念纸币（族名）
 
 点名「纸币样张」或「纸币实景」时不要停在这个族名上，直接落到上面两个 `style_mode`。
+
+## `vinyl_record_in_situ` — 黑胶唱片实景
+
+1:2 竖构图：上方是最佳正方形摄影裁切，下方是重新设计的 70 年代唱片店微距场景。原图被转译成专辑封面，不能直接贴图；封套为焦点，旁边黑胶正在运转。详见 [vinyl-record.md](vinyl-record.md)。
 
 ## `rounded_monoline_blocks` — 圆润粗线色块
 
