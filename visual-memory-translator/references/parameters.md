@@ -29,6 +29,7 @@ original_display_mode:
   # film_strip
   # exhibition_reference
   # stamp_window
+  # in_place_stamp_window
   # ticket_image
   # vellum_overlay
   # peek_window
@@ -42,6 +43,7 @@ layout_mode:
   # single_artwork
   # asymmetric_archive
   # sticker_layer_reassembly
+  # equal_square_stack
 
 style_mode:
   # minimal_watercolor
@@ -65,6 +67,19 @@ style_mode:
   # layered_sticker_reassembly
   # rounded_monoline_blocks
   # editorial_metaphor_card
+  # central_in_place_stamp
+  # vinyl_record_in_situ
+
+stamp_scale:
+  # small | medium | custom_percent
+
+inner_style:
+  # auto_content_driven | colored_pencil | watercolor | woodcut | lithograph
+  # risograph | screenprint | pen_wash | clear_line_comic | paper_cut | custom
+
+album_title: auto_from_image  # optional override
+album_note: auto_from_image   # optional override
+catalog_code: auto_conceptual # optional override
 
 abstraction_level:
   # low | medium | high | extreme
@@ -110,7 +125,7 @@ transition:
   # vellum_overlap | mask_window | paper_fold | no_visible_separator
 
 ratio:
-  # 3:4 | 1:1 | 4:3 | 3:2 | 16:9 | 9:16 | custom
+  # 3:4 | 1:1 | 1:2 | 4:3 | 3:2 | 16:9 | 9:16 | custom
 ```
 
 ---

@@ -13,6 +13,8 @@ npx skills add TanShilongMario/visual-memory-translator-SKILL
 
 未指定风格时，先出 6 格风格预览；选编号后从原图重生成高清成品。对话当天若落在七夕、圣诞、复活节、感恩节等主流节日 ±1 天，会默认叠一层极淡的节日痕迹，可说「不用节日限定」关闭。
 
+如果不想安装 Skill，可直接使用 [`Prompts/`](Prompts/) 中拆分好的单条提示词。纸币样张、纸币实景、中央原位邮票、黑胶唱片实景、展览票和抽象色块均可独立调用。
+
 ---
 
 <a id="gallery"></a>
@@ -82,6 +84,14 @@ npx skills add TanShilongMario/visual-memory-translator-SKILL
 不用节日限定。
 ```
 
+```text
+用中央邮票模式，框内保持原坐标，只改变艺术媒介。
+```
+
+```text
+把这张图转成黑胶唱片实景，上下两个正方形，最终比例 1:2。
+```
+
 未指定风格的照片会先生成 6 格预览（也可 4 / 9 格）。已指定风格、纯文本、或「跳过预览」则直达成品。详见 [`examples.md`](visual-memory-translator/examples.md)。
 
 ### 能力
@@ -93,7 +103,10 @@ npx skills add TanShilongMario/visual-memory-translator-SKILL
 | 节日限定 | 按对话当天检测中 / 日 / 美主流节日（含复活节、感恩节等可移动节日），窗口 ±1 天。七夕双人照可用红线、喜鹊；单人照不补伴侣。 |
 | 纸币样张 | 上图铺满，下图平放虚构纸币；票面文字先读该图再写，不套券/样张模板。 |
 | 纸币实景 | 上图铺满，下图手持该钞、背景为同一现场；文字同样从该图生成。 |
-| 记忆模板 | 分层贴纸、圆润粗线、极简水彩、展览票、邮票、长虹玻璃等。 |
+| 中央原位邮票 | 先锁定最终底图，再把中央同一坐标区域转成不同媒介；不复制、不缩放、不重构对象。 |
+| 黑胶唱片实景 | 1:2 上下双正方形；上方摄影，下方为重新设计的 70 年代唱片店与专辑封面。 |
+| 记忆模板 | 分层贴纸、圆润粗线、抽象色块、极简水彩、展览票、长虹玻璃等。 |
+| 独立提示词 | `Prompts/` 提供无需安装 Skill 的可复制完整提示词。 |
 
 默认审美：高抽象（约保留 15%–30% 信息）、极高留白、非对称、暖米白纸面、短文案。
 
@@ -104,6 +117,16 @@ npx skills add TanShilongMario/visual-memory-translator-SKILL
 ├── README.md
 ├── LICENSE
 ├── outputs/                         # 公开样张
+├── Prompts/                         # 可独立复制使用的单条提示词
+│   ├── README.md
+│   ├── 01-editorial-memory-page.md
+│   ├── 02-abstract-color-blocks.md
+│   ├── 03-exhibition-ticket.md
+│   ├── 04-banknote-specimen.md
+│   ├── 05-banknote-in-situ.md
+│   ├── 06-central-in-place-stamp.md
+│   ├── 07-vinyl-record-in-situ.md
+│   └── 08-style-preview-grid.md
 └── visual-memory-translator/
     ├── SKILL.md
     ├── examples.md
@@ -117,6 +140,8 @@ npx skills add TanShilongMario/visual-memory-translator-SKILL
         ├── text-visual.md
         ├── holidays.md
         ├── banknote.md
+        ├── central-stamp.md
+        ├── vinyl-record.md
         └── quality.md
 ```
 
@@ -151,6 +176,8 @@ Translate this sentence: so-called work-life balance means work keeps adding wei
 ```
 
 When no style is named, the skill first makes a six-panel contact sheet, then regenerates the chosen direction from the original photo. Around major CN / JP / US holidays (±1 day), it may add a sparse seasonal motif unless you opt out.
+
+Named templates now include banknote specimen, banknote in-situ, central in-place stamp, vinyl record-store in-situ, exhibition ticket, and abstract color blocks. Standalone copy-ready prompts are available in [`Prompts/`](Prompts/).
 
 Compatible with Cursor, Codex, Claude, and other Agent Skills paths. Invoke `/visual-memory-translator`, or say “turn this photo into an editorial memory page.”
 
